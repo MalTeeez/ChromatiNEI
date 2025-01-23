@@ -26,6 +26,7 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.GuiRecipe;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
@@ -173,7 +174,7 @@ public class CastingTableHandler extends TemplateRecipeHandler {
             for (CrystalElement e : tag.elementSet()) {
                 int w = 4;
                 int x = 12+e.ordinal()*w*2;
-                ReikaGuiAPI.instance.drawRect(x, 188, x+w, 223, e.getJavaColor().darker().darker().getRGB());
+                Gui.drawRect(x, 188, x+w, 223, e.getJavaColor().darker().darker().getRGB());
             }
         }
     }

@@ -1,0 +1,3 @@
+handler,modName,itemName,nbtInfo,modId,modRequired,excludedModId,yShift,handlerHeight,handlerWidth,maxRecipesPerPage,imageResource,imageX,imageY,imageWidth,imageHeight,itemNotes
+cc.unilock.chromatinei.compat.nei.handler.CastingTableHandler,ChromatiNEI,ChromatiCraft:chromaticraft_item_placer:5,,ChromatiCraft,TRUE,,,226,149,,,,,,,
+cc.unilock.chromatinei.compat.nei.handler.PoolHandler,ChromatiNEI,ChromatiCraft:chromaticraft_item_bucket,,ChromatiCraft,TRUE,,,150,130,,,,,,,
