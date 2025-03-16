@@ -1,3 +1,0 @@
-handler,itemName,nbtInfo,modId,modRequired,excludedModId,priority,minVersion,maxVersion,forceClassName,itemNotes
-cc.unilock.chromatinei.compat.nei.handler.CastingTableHandler,ChromatiCraft:chromaticraft_item_placer:5,,ChromatiCraft,TRUE,,100,,,,
-cc.unilock.chromatinei.compat.nei.handler.PoolHandler,ChromatiCraft:chromaticraft_item_bucket,,ChromatiCraft,TRUE,,100,,,,
