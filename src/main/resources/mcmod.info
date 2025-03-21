@@ -3,7 +3,7 @@
 	"modList": [{
 		"modid": "${modId}",
 		"name": "${modName}",
-		"description": "ChromatiCraft in NEI!?",
+		"description": "ChromatiCraft in NEI",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
 		"url": "https://github.com/unilock/ChromatiNEI",

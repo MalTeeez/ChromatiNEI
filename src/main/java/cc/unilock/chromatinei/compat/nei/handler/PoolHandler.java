@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -102,6 +103,18 @@ public class PoolHandler extends TemplateRecipeHandler {
     }
 
     @Override
+    public void loadCraftingRecipes(String outputId, Object... results) {
+        if (outputId.equals("chromatinei.pool")) {
+            Collection<PoolRecipes.PoolRecipe> li = PoolRecipes.instance.getAllPoolRecipes();
+            for (PoolRecipes.PoolRecipe poolRecipe : li) {
+                arecipes.add(new CachedPoolRecipe(poolRecipe));
+            }
+        } else {
+            super.loadCraftingRecipes(outputId, results);
+        }
+    }
+
+    @Override
     public void loadCraftingRecipes(ItemStack result) {
         if (result != null) {
             PoolRecipes.PoolRecipe poolRecipe = PoolRecipes.instance.getPoolRecipeByOutput(result);
@@ -139,5 +152,10 @@ public class PoolHandler extends TemplateRecipeHandler {
         } else {
             return super.mouseClicked(gui, button, recipe);
         }
+    }
+
+    @Override
+    public void loadTransferRects() {
+        transferRects.add(new RecipeTransferRect(new Rectangle(46, 57, 68, 32), "chromatinei.pool"));
     }
 }

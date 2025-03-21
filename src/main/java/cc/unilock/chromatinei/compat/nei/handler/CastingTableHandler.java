@@ -31,7 +31,9 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -137,6 +139,18 @@ public class CastingTableHandler extends TemplateRecipeHandler {
     }
 
     @Override
+    public void loadCraftingRecipes(String outputId, Object... results) {
+        if (outputId.equals("chromatinei.castingTable")) {
+            Collection<CastingRecipe> li = RecipesCastingTable.instance.getAllRecipes();
+            for (CastingRecipe castingRecipe : li) {
+                arecipes.add(new CachedCastingRecipe(castingRecipe));
+            }
+        } else {
+            super.loadCraftingRecipes(outputId, results);
+        }
+    }
+
+    @Override
     public void loadCraftingRecipes(ItemStack result) {
         if (result != null) {
             ArrayList<CastingRecipe> li = RecipesCastingTable.instance.getAllRecipesMaking(result);
@@ -188,5 +202,10 @@ public class CastingTableHandler extends TemplateRecipeHandler {
         } else {
             return super.mouseClicked(gui, button, recipe);
         }
+    }
+
+    @Override
+    public void loadTransferRects() {
+        transferRects.add(new RecipeTransferRect(new Rectangle(62, 24, 24, 8), "chromatinei.castingTable"));
     }
 }
