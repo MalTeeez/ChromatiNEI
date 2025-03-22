@@ -21,6 +21,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class PoolHandler extends TemplateRecipeHandler {
+    private static final int X_OFFSET = 8;
+
     public class CachedPoolRecipe extends CachedRecipe {
         public final PoolRecipes.PoolRecipe recipe;
         public final boolean visible;
@@ -34,7 +36,7 @@ public class PoolHandler extends TemplateRecipeHandler {
         public List<PositionedStack> getIngredients() {
             ArrayList<PositionedStack> stacks = new ArrayList<>();
             if (!visible) return stacks;
-            stacks.add(new PositionedStack(recipe.getMainInput(), 12, 65));
+            stacks.add(new PositionedStack(recipe.getMainInput(), X_OFFSET + 12, 65));
             int i = 0;
             for (ItemStack is : recipe.getInputs()) {
                 if (is.getItem() == null) continue;
@@ -46,26 +48,26 @@ public class PoolHandler extends TemplateRecipeHandler {
                 int dx = 50+(i%3)*17;
                 int dy = 3+(i/3)*17;
                 if (li != null) {
-                    stacks.add(new PositionedStack(li, dx, dy, true));
+                    stacks.add(new PositionedStack(li, X_OFFSET + dx, dy, true));
                 } else {
-                    stacks.add(new PositionedStack(is, dx, dy));
+                    stacks.add(new PositionedStack(is, X_OFFSET + dx, dy));
                 }
                 i++;
             }
-            stacks.add(new PositionedStack(ChromaItems.BUCKET.getStackOf(), 122, 65));
+            stacks.add(new PositionedStack(ChromaItems.BUCKET.getStackOf(), X_OFFSET + 122, 65));
             return stacks;
         }
 
         @Override
         public PositionedStack getResult() {
             if (!visible) return null;
-            return new PositionedStack(recipe.getOutput(), 67, 102);
+            return new PositionedStack(recipe.getOutput(), X_OFFSET + 67, 102);
         }
 
         @Override
         public PositionedStack getOtherStack() {
             if (!visible) return null;
-            return new PositionedStack(ChromaItems.HELP.getStackOf().setStackDisplayName("Click for info"), 0, 0);
+            return new PositionedStack(ChromaItems.HELP.getStackOf().setStackDisplayName("Click for info"), X_OFFSET, 0);
         }
     }
 
@@ -91,7 +93,7 @@ public class PoolHandler extends TemplateRecipeHandler {
         GL11.glColor4f(1, 1, 1, 1);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         ReikaTextureHelper.bindTexture(ChromatiCraft.class, this.getGuiTexture());
-        ReikaGuiAPI.instance.drawTexturedModalRectWithDepth(0, 0, 0, 0, 150, 130, ReikaGuiAPI.NEI_DEPTH);
+        ReikaGuiAPI.instance.drawTexturedModalRectWithDepth(X_OFFSET, 0, 0, 0, 150, 130, ReikaGuiAPI.NEI_DEPTH);
     }
 
     @Override
@@ -139,7 +141,7 @@ public class PoolHandler extends TemplateRecipeHandler {
     public void drawExtras(int recipe) {
         CachedPoolRecipe c = (CachedPoolRecipe)arecipes.get(recipe);
         if (!c.visible) {
-            GuiDraw.drawString("There is still much to learn...", 0, 0, 0, false);
+            GuiDraw.drawString("There is still much to learn...", X_OFFSET, 0, 0, false);
         }
     }
 
@@ -156,6 +158,6 @@ public class PoolHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new RecipeTransferRect(new Rectangle(46, 57, 68, 32), "chromatinei.pool"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(X_OFFSET + 46, 57, 68, 32), "chromatinei.pool"));
     }
 }

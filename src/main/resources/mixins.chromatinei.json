@@ -7,8 +7,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [],
   "client": [
-    "ChromaClientEventControllerMixin",
-    "GuiContainerAccessor"
+    "ChromaClientEventControllerMixin"
   ],
   "server": []
 }

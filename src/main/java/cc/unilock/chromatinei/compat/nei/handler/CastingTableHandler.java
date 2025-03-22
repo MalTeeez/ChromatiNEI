@@ -38,6 +38,8 @@ import java.util.List;
 import java.util.Map;
 
 public class CastingTableHandler extends TemplateRecipeHandler {
+    private static final int X_OFFSET = 9;
+
     public class CachedCastingRecipe extends CachedRecipe {
         public final CastingRecipe recipe;
         public final boolean visible;
@@ -58,7 +60,7 @@ public class CastingTableHandler extends TemplateRecipeHandler {
                 for (int j = 0; j < 3; j++) {
                     ItemStack is = items[i+j*3];
                     if (is != null) {
-                        stacks.add(new PositionedStack(is, dx+18*i, dy+18*j));
+                        stacks.add(new PositionedStack(is, X_OFFSET + dx+18*i, dy+18*j));
                     }
                 }
             }
@@ -74,7 +76,7 @@ public class CastingTableHandler extends TemplateRecipeHandler {
                     int ty = Math.abs(k) == 2 ? 38 : 63;
                     int px = 66+sx*(tx);
                     int py = 97+sy*(ty);
-                    stacks.add(new PositionedStack(is.getCycledItem(), px, py));
+                    stacks.add(new PositionedStack(is.getCycledItem(), X_OFFSET + px, py));
                 }
             }
             return stacks;
@@ -83,13 +85,13 @@ public class CastingTableHandler extends TemplateRecipeHandler {
         @Override
         public PositionedStack getResult() {
             if (!visible) return null;
-            return new PositionedStack(recipe.getOutput(), 66, 4);
+            return new PositionedStack(recipe.getOutput(), X_OFFSET + 66, 4);
         }
 
         @Override
         public PositionedStack getOtherStack() {
             if (!visible) return null;
-            return new PositionedStack(ChromaItems.HELP.getStackOf().setStackDisplayName("Click for info"), 0, 0);
+            return new PositionedStack(ChromaItems.HELP.getStackOf().setStackDisplayName("Click for info"), X_OFFSET, 0);
         }
     }
 
@@ -127,7 +129,7 @@ public class CastingTableHandler extends TemplateRecipeHandler {
         GL11.glColor4f(1, 1, 1, 1);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         ReikaTextureHelper.bindTexture(ChromatiCraft.class, this.getGuiTexture(recipe));
-        ReikaGuiAPI.instance.drawTexturedModalRectWithDepth(0, 0, 0, 0, 148, h, ReikaGuiAPI.NEI_DEPTH);
+        ReikaGuiAPI.instance.drawTexturedModalRectWithDepth(X_OFFSET, 0, 0, 0, 148, h, ReikaGuiAPI.NEI_DEPTH);
     }
 
     @Override
@@ -180,7 +182,7 @@ public class CastingTableHandler extends TemplateRecipeHandler {
     public void drawExtras(int recipe) {
         CachedCastingRecipe c = (CachedCastingRecipe)arecipes.get(recipe);
         if (!c.visible) {
-            GuiDraw.drawString("There is still much to learn...", 0, 0, 0, false);
+            GuiDraw.drawString("There is still much to learn...", X_OFFSET, 0, 0, false);
             return;
         }
         if (c.recipe instanceof PylonCastingRecipe p) {
@@ -188,7 +190,7 @@ public class CastingTableHandler extends TemplateRecipeHandler {
             for (CrystalElement e : tag.elementSet()) {
                 int w = 4;
                 int x = 12+e.ordinal()*w*2;
-                Gui.drawRect(x, 188, x+w, 223, e.getJavaColor().darker().darker().getRGB());
+                Gui.drawRect(X_OFFSET + x, 188, X_OFFSET + x+w, 223, e.getJavaColor().darker().darker().getRGB());
             }
         }
     }
@@ -206,6 +208,6 @@ public class CastingTableHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new RecipeTransferRect(new Rectangle(62, 24, 24, 8), "chromatinei.castingTable"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(X_OFFSET + 62, 24, 24, 8), "chromatinei.castingTable"));
     }
 }
