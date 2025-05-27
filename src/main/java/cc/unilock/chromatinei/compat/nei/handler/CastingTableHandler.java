@@ -145,7 +145,10 @@ public class CastingTableHandler extends TemplateRecipeHandler {
         if (outputId.equals("chromatinei.castingTable")) {
             Collection<CastingRecipe> li = RecipesCastingTable.instance.getAllRecipes();
             for (CastingRecipe castingRecipe : li) {
-                arecipes.add(new CachedCastingRecipe(castingRecipe));
+                CachedCastingRecipe c = new CachedCastingRecipe(castingRecipe);
+                if (c.visible) {
+                    arecipes.add(c);
+                }
             }
         } else {
             super.loadCraftingRecipes(outputId, results);

@@ -109,7 +109,10 @@ public class PoolHandler extends TemplateRecipeHandler {
         if (outputId.equals("chromatinei.pool")) {
             Collection<PoolRecipes.PoolRecipe> li = PoolRecipes.instance.getAllPoolRecipes();
             for (PoolRecipes.PoolRecipe poolRecipe : li) {
-                arecipes.add(new CachedPoolRecipe(poolRecipe));
+                CachedPoolRecipe c = new CachedPoolRecipe(poolRecipe);
+                if (c.visible) {
+                    arecipes.add(c);
+                }
             }
         } else {
             super.loadCraftingRecipes(outputId, results);
