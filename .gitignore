@@ -2,7 +2,6 @@
 .settings
 /.idea/
 /.vscode/
-/run/
 /build/
 /eclipse/
 .classpath
@@ -30,9 +29,25 @@ src/main/resources/mixins.*([!.]).json
 *.bat
 *.DS_Store
 !gradlew.bat
-.factorypath
+.factorypath 
 addon.local.gradle
 addon.local.gradle.kts
 addon.late.local.gradle
 addon.late.local.gradle.kts
 layout.json
+
+# Include the required config files for the thing not to crash in dev env
+!run/
+run/*
+!run/client/
+!run/server/
+run/client/*
+run/server/*
+!run/client/config/
+!run/server/config/
+run/client/config/*
+run/server/config/*
+!run/client/config/hodgepodge.cfg
+!run/client/config/chromatifixes.cfg
+!run/server/config/hodgepodge.cfg
+!run/server/config/chromatifixes.cfg
