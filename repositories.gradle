@@ -1,5 +1,12 @@
 // Add any additional repositories for your dependencies here.
-
+    // maven {
+    //     name = "GitHubPackages"
+    //     url = uri("https://maven.pkg.github.com/MalTeeez/ChromatiFixes")
+    //     credentials {
+    //         username = System.getenv("GITHUB_ACTOR") ?: ""
+    //         password = System.getenv("GITHUB_TOKEN") ?: ""
+    //     }
+    // }
+    
 repositories {
-
 }
