@@ -41,5 +41,5 @@ dependencies {
 
     devOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.8.40-GTNH:dev") { transitive = true }
 
-    runtimeOnly(files("libs/chromatifixes-1.12.7.1-pre-dev.jar"))
+    runtimeOnly(files("libs/chromatifixes-1.12.7.1-dev.jar"))
 }
